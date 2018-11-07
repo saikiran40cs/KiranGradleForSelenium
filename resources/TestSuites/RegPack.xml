@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestSuite" preserve-order="true">
+	<test name="Change" group-by-instances="true">
+		<classes>
+			<class name="Demo.Change" />
+		</classes>
+	</test> <!-- Test -->
+	
+	
+	<test name="Payment" group-by-instances="true">
+		<classes>
+			<class name="Demo.Payment" />
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite For Tests -->
