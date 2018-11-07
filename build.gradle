@@ -1,16 +1,64 @@
+/** Author: Sai Kiran*/
+/** This build file is required for the Gradle projects.*/
+#apply plugin: 'java'
 plugins {
     id 'java'
+    id 'eclipse'
 }
 
-group 'com.saikiranpro'
+group = "Kiran-Gradle-java"
 version '1.0-SNAPSHOT'
+description = "Gradle Project using selenium web driver"
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
+// In this section you declare where to find the dependencies of your project
 repositories {
+    // Declare any Maven/Ivy/file repository here.
     mavenCentral()
+    //Custom Repositories can be added in the below manner
+	   /** maven {
+	        url 'https://repo url'
+	        credentials {
+	            username = "username"
+	            password = "password"
+	        }
+	    }*/
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+	compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.14.0'
+	// https://mvnrepository.com/artifact/com.aventstack/extentreports
+	compile group: 'com.aventstack', name: 'extentreports', version: '3.1.5'
+	// https://mvnrepository.com/artifact/org.apache.poi/poi
+	compile group: 'org.apache.poi', name: 'poi', version: '4.0.0'
+	// https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
+	compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.0.0'
+	// https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml-schemas
+	compile group: 'org.apache.poi', name: 'poi-ooxml-schemas', version: '4.0.0'
+	// https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+	compile group: 'commons-io', name: 'commons-io', version: '2.6'
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
+	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
+	// https://mvnrepository.com/artifact/junit/junit
+	compile group: 'junit', name: 'junit', version: '4.12'
+	// Use TestNG test runner- https://mvnrepository.com/artifact/org.testng/testng
+	compile group: 'org.testng', name: 'testng', version: '6.14.3'
 }
+
+test {
+	//ignoreFailures = true
+    useTestNG() {
+    	useDefaultListeners = true // Tells TestNG to execute its default reporting structure
+        suites 'resources/TestSuites/RegPack.xml'
+    }
+    testLogging.showStandardStreams = true
+    systemProperties = System.getProperties()
+    //systemProperties['test.resources.dir'] = './resources/'
+    maxHeapSize = '1500m'
+}
+
