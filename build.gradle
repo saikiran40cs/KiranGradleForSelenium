@@ -1,6 +1,6 @@
 /** Author: Sai Kiran*/
 /** This build file is required for the Gradle projects.*/
-#apply plugin: 'java'
+//apply plugin: 'java'
 plugins {
     id 'java'
     id 'eclipse'
